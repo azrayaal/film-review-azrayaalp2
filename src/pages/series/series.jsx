@@ -2,12 +2,11 @@ import React from 'react';
 import Footer from '../../components/footer';
 import Navbara from '../../components/navbar';
 import axios from 'axios';
-import CardsSeries from '../../components/atoms/cardsseries';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Searchbox from '../../components/atoms/searchbox';
 import Container from 'react-bootstrap/Container';
 import Pagee from '../../components/pagination';
+import Cards from '../../components/atoms/cards';
 
 export default function Series() {
   const [movies, setMovies] = useState([]);
@@ -15,11 +14,16 @@ export default function Series() {
   const [numOfPages, setNumOfPages] = useState();
 
   const fetchSeries = async () => {
-    await axios.get(`https://api.themoviedb.org/3/discover/tv/?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`).then((response) => {
-      console.log('data =>', response.data.results);
-      setMovies(response.data.results);
-      setNumOfPages(response.data.total_pages);
-    });
+    await axios
+      .get(`https://api.themoviedb.org/3/discover/tv/?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
+      .then((response) => {
+        console.log('data =>', response.data.results);
+        setMovies(response.data.results);
+        setNumOfPages(response.data.total_pages);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -47,7 +51,21 @@ export default function Series() {
             <main class="list-film">
               <div class="container-fluid">
                 <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-3 mx-auto">
-                  <CardsSeries movies={movies} setMovies={setMovies} />
+                  {movies &&
+                    movies.map((m) => (
+                      <Cards
+                        movies={movies}
+                        setMovies={setMovies}
+                        key={m.id}
+                        id={m.id}
+                        poster_path={m.poster_path}
+                        title={m.title || m.name}
+                        release_date={m.first_air_date || m.release_date}
+                        vote_average={m.vote_average}
+                        original_language={m.original_language}
+                        media_type="tv"
+                      />
+                    ))}
                 </div>
               </div>
             </main>

@@ -69,7 +69,7 @@ export default function Home() {
                       release_date={m.first_air_date || m.release_date}
                       vote_average={m.vote_average}
                       original_language={m.original_language}
-                      media_type={m.media_type}
+                      media_type="movie"
                     />
                   ))}
               </div>
