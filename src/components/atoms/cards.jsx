@@ -4,7 +4,7 @@ import ModalDetail from './modalDetails';
 export default function Cards({ id, poster_path, title, release_date, vote_average, original_language, media_type }) {
   return (
     <>
-      <ModalDetail key={id} media_type={media_type}>
+      <ModalDetail id={id} media_type={media_type}>
         <div class="col">
           <div class="card bg-dark text-white">
             <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />

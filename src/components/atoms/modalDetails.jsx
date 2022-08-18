@@ -5,8 +5,8 @@ import Fade from '@mui/material/Fade';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
@@ -31,12 +31,30 @@ const style = {
 export default function ModalDetail({ children, media_type, id, title }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const [show, setShow] = useState(false);
   const [content, setContent] = useState();
   const handleClose = () => setOpen(false);
 
+  // const fetchData = async () => {
+  //   const { data } = await axios.get(`https://api.themoviedb.org/3/movie/63247?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`);
+  //   console.log('data dari id=>', data);
+  //   setContent(data);
+  //   // console.log(data);
+  // };
+
+  // const fetchData = async () => {
+  //   await axios
+  //     .get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`)
+  //     .then((response) => {
+  //       console.log('data dari id=>', response.data);
+  //       setContent(response.data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   const fetchData = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/63247?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`);
+    const { data } = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`);
     console.log('data dari id=>', data);
     setContent(data);
     // console.log(data);
@@ -93,7 +111,7 @@ export default function ModalDetail({ children, media_type, id, title }) {
     //     <Modal.Footer>a</Modal.Footer>
     //   </Modal>
     // </>
-    <div>
+    <div id={id}>
       <div className="media" style={{ cursor: 'pointer' }} color="inherit" onClick={handleOpen}>
         {children}
       </div>
@@ -109,17 +127,22 @@ export default function ModalDetail({ children, media_type, id, title }) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+          {content && (
+            <Box sx={style}>
+              {/* <Typography id="transition-modal-title" variant="h6" component="h2"> */}
               <div className="row">
+                {/* <h1>{content.title}</h1> */}
                 <div className="ContentModal col-lg-4">
-                  {/* <h1>hai</h1> */}
-                  <img src={content.poster_path ? `https://image.tmdb.org/t/p/w300/${content.poster_path}` : `https://www.movienewz.com/img/films/poster-holder.jpg`} alt={content.name || content.title} className="ContentModal__portrait " />
-                  {/* {/* <img
-                  src={content.backdrop_path ? `https://image.tmdb.org/t/p/w500/${content.backdrop_path}` : `https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg`}
-                  alt={content.name || content.title}
-                  className="ContentModal__landscape"
-                /> */}
+                  <img
+                    src={content.poster_path ? `https://image.tmdb.org/t/p/w300/${content.poster_path}` : `https://image.tmdb.org/t/p/w300/${content.backdrop_path}`}
+                    alt={content.name || content.title}
+                    className="ContentModal__portrait "
+                  />
+                  {/* <img
+                    src={content.backdrop_path ? `https://image.tmdb.org/t/p/w300/${content.backdrop_path}` : `https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg`}
+                    alt={content.name || content.title}
+                    className="ContentModal__landscape"
+                  /> */}
                 </div>
                 <div className="ContentModal__about col-lg-8">
                   {' '}
@@ -137,9 +160,9 @@ export default function ModalDetail({ children, media_type, id, title }) {
                 <Col xs={12} md={8}> */}
               {/* </Col>
               </Row> */}
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}></Typography>
-          </Box>
+              {/* </Typography> */}
+            </Box>
+          )}
         </Fade>
       </Modal>
     </div>

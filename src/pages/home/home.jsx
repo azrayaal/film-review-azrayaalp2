@@ -63,6 +63,7 @@ export default function Home() {
                       movies={movies}
                       setMovies={setMovies}
                       key={m.id}
+                      id={m.id}
                       poster_path={m.poster_path}
                       title={m.title || m.name}
                       release_date={m.first_air_date || m.release_date}
