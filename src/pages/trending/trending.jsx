@@ -15,20 +15,11 @@ export default function Trending() {
   const [numOfPages, setNumOfPages] = useState();
 
   const fetchTrending = async () => {
-    await axios
-      .get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`
-        // , {
-        //   params: {
-        //     api_key: '8861682de098ff4d4464beac670c09cd',
-        //   },
-        // }
-      )
-      .then((response) => {
-        console.log('data =>', response.data.results);
-        setMovies(response.data.results);
-        setNumOfPages(response.data.total_pages);
-      });
+    await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`).then((response) => {
+      console.log('data =>', response.data.results);
+      setMovies(response.data.results);
+      setNumOfPages(response.data.total_pages);
+    });
   };
 
   useEffect(() => {
@@ -54,7 +45,21 @@ export default function Trending() {
           <main class="list-film">
             <div class="container-fluid">
               <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-3 mx-auto">
-                <Cards movies={movies} setMovies={setMovies} />
+                {movies &&
+                  movies.map((m) => (
+                    <Cards
+                      movies={movies}
+                      setMovies={setMovies}
+                      key={m.id}
+                      id={m.id}
+                      poster_path={m.poster_path}
+                      title={m.title || m.name}
+                      release_date={m.first_air_date || m.release_date}
+                      vote_average={m.vote_average}
+                      original_language={m.original_language}
+                      media_type="movie"
+                    />
+                  ))}
               </div>
             </div>
           </main>
