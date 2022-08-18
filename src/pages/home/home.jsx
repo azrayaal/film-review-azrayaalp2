@@ -7,24 +7,21 @@ import Searchbox from '../../components/atoms/searchbox';
 import Footer from '../../components/footer';
 import Navbara from '../../components/navbar';
 import Pagee from '../../components/pagination';
+// import useGenre from '../../hooks/useGenre';
+// import Genres from '../../components/atoms/genres';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [page, setPage] = useState(1);
   const [numOfPages, setNumOfPages] = useState();
+  // const [genres, setGenres] = useState([]);
+  // const [selectedGenres, setSelectedGenres] = useState([]);
+  // const genreforURL = useGenre(selectedGenres);
 
   const getMovieRequest = async () => {
     await axios
-      // .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
-      .get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`
-        // ,{
-        //   params: {
-        //     api_key: '8861682de098ff4d4464beac670c09cd',
-        //   },
-        // }
-      )
+      .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
       .then((response) => {
         console.log('data =>', response.data);
         setMovies(response.data.results);
@@ -60,7 +57,20 @@ export default function Home() {
           <main class="list-film">
             <div class="container-fluid">
               <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-3 mx-auto">
-                <Cards movies={movies} setMovies={setMovies} />
+                {movies &&
+                  movies.map((m) => (
+                    <Cards
+                      movies={movies}
+                      setMovies={setMovies}
+                      key={m.id}
+                      poster_path={m.poster_path}
+                      title={m.title || m.name}
+                      release_date={m.first_air_date || m.release_date}
+                      vote_average={m.vote_average}
+                      original_language={m.original_language}
+                      media_type={m.media_type}
+                    />
+                  ))}
               </div>
             </div>
           </main>

@@ -1,42 +1,26 @@
-import Container from 'react-bootstrap/Container';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Navbara from './navbar';
-import Spiderman from '../img/spidermanexample.jpg';
-import Footer from './footer';
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
-function Filmdetails({ media_type, id }) {
-  const [content, setContent] = useState();
+export default function Example() {
+  const [show, setShow] = useState(false);
 
-  const fetchDetail = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`).then((response) => {
-      console.log(response);
-      setContent(response);
-    });
-
-    // console.log(data);
-  };
-
-  useEffect(() => {
-    fetchDetail();
-  }, []);
-
-  const style = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
-      <Navbara />
-      <div className="bgutama pb-3">
-        <Container>
-          {/* Stack the columns on mobile by making one full-width and the other half-width */}
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+
+      <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <Row className="py-5">
             <Col xs={12} md={4} className="item-center">
               <div class="card bg-dark text-white" style={style}>
@@ -66,11 +50,17 @@ function Filmdetails({ media_type, id }) {
               </div>
             </Col>
           </Row>
-        </Container>
-      </div>
-      <Footer />
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
-
-export default Filmdetails;

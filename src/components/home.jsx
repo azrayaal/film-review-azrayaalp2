@@ -52,6 +52,8 @@ export default function Home(props) {
               <h6 id="#boxoffice" class="newest">
                 Box Office
               </h6>
+
+              
               <Searchbox searchValue={searchValue} setSearchValue={setSearchValue} getMovieRequest={getMovieRequest} />
             </div>
           </div>
@@ -60,7 +62,18 @@ export default function Home(props) {
         <main class="list-film">
           <div class="container-fluid">
             <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-3 mx-auto">
-              <Cards movies={movies} searchValue={searchValue} />
+             {movies && movies.map((m) => <Cards 
+                movies={movies} 
+                setMovies={setMovies} 
+                key={m.id} 
+                poster_path={m.poster_path} 
+                title={m.title || m.name} 
+                release_date={m.first_air_date || m.release_date} 
+                vote_average={m.vote_average} 
+                original_language={m.original_language} 
+                />)}
+
+              {/* <Cards movies={movies} searchValue={searchValue} /> */}
             </div>
           </div>
         </main>

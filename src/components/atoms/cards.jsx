@@ -1,31 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ModalDetail from './modalDetails';
 
-export default function Cards(props) {
+export default function Cards({ id, poster_path, title, release_date, vote_average, original_language, media_type }) {
   return (
     <>
-      {props.movies.map((result, index) => (
-        <div class="col" key={(index, result)}>
-          <Link class="nav-link active text-white" aria-current="page" to="/filmdetails">
-            <div class="card bg-dark text-white">
-              <img src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.Title} />
-              <div class="card-img-overlay">
-                <div class="container-fluid shadow">
-                  <p class="card-title">
-                    {result.title}, ({result.release_date})
-                  </p>
-                </div>
-                <p class="card-rating">
-                  <i class="bx bxs-star"></i> {result.vote_average}
+      <ModalDetail key={id} media_type={media_type}>
+        <div class="col">
+          <div class="card bg-dark text-white">
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt={title} />
+            <div class="card-img-overlay">
+              <div class="container-fluid shadow">
+                <p class="card-title">
+                  {title}, ({release_date})
                 </p>
-                <p class="card-format">{result.original_language}</p>
-                <div class="tooltip"></div>
-                <i class="bx bx-play"></i>
               </div>
+              <p class="card-rating">
+                <i class="bx bxs-star"></i> {vote_average}
+              </p>
+              <p class="card-format">{original_language}</p>
+              <div class="tooltip"></div>
+              <i class="bx bx-play"></i>
             </div>
-          </Link>
+          </div>
         </div>
-      ))}
+      </ModalDetail>
     </>
   );
 }
