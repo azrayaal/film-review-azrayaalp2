@@ -4,13 +4,13 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Typography, Box } from '@mui/material';
+import { Box } from '@mui/material';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
 // import Container from 'react-bootstrap/Container';
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
-// import '../../css/modal.css';
+import '../../css/modal.css';
 
 const style = {
   backgroundColor: '#39445a',
@@ -133,16 +133,12 @@ export default function ModalDetail({ children, media_type, id, title }) {
               <div className="row">
                 {/* <h1>{content.title}</h1> */}
                 <div className="ContentModal col-lg-4">
+                  <img src={content.poster_path ? `https://image.tmdb.org/t/p/w300/${content.poster_path}` : `https://www.movienewz.com/img/films/poster-holder.jpg`} alt={content.name || content.title} className="ContentModal__portrait " />
                   <img
-                    src={content.poster_path ? `https://image.tmdb.org/t/p/w300/${content.poster_path}` : `https://image.tmdb.org/t/p/w300/${content.backdrop_path}`}
-                    alt={content.name || content.title}
-                    className="ContentModal__portrait "
-                  />
-                  {/* <img
-                    src={content.backdrop_path ? `https://image.tmdb.org/t/p/w300/${content.backdrop_path}` : `https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg`}
+                    src={content.backdrop_path ? `https://image.tmdb.org/t/p/w300//${content.backdrop_path}` : 'https://user-images.githubusercontent.com/10515204/56117400-9a911800-5f85-11e9-878b-3f998609a6c8.jpg'}
                     alt={content.name || content.title}
                     className="ContentModal__landscape"
-                  /> */}
+                  />
                 </div>
                 <div className="ContentModal__about col-lg-8">
                   {' '}
