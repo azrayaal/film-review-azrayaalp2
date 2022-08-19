@@ -49,10 +49,20 @@ export default function Navbara(props) {
                 </Link>
               </Col>
               <Col>
-                <Link to="/series" style={{ display: 'inline', textDecoration: 'none' }}>
+                <Link to="/series" style={{ display: 'inline', textDecoration: 'none' }} className="pr-3">
                   <i class="bx bx-tv" style={{ color: '#ffae00', textAlign: 'center' }}>
                     <p className="text-white text-center" style={{ cursor: 'pointer' }}>
                       Series
+                    </p>
+                  </i>
+                  <br />
+                </Link>
+              </Col>
+              <Col>
+                <Link to="/search" style={{ display: 'inline', textDecoration: 'none' }}>
+                  <i class="bx bx-search-alt-2" style={{ color: '#ffae00', textAlign: 'center' }}>
+                    <p className="text-white text-center" style={{ cursor: 'pointer' }}>
+                      Search
                     </p>
                   </i>
                   <br />
