@@ -1,5 +1,13 @@
 import React from 'react';
 
+// const style = {
+//   // position: 'absolute',
+//   bottom: 0,
+//   left: 0,
+//   right: 0,
+//   // height: '100px',
+// };
+
 export default function Footer() {
   return (
     <div id="footer">

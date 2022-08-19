@@ -27,7 +27,7 @@ export default function Search() {
   return (
     <div className="bgutama">
       <Navbara />
-      {/* <Searchbox setSearchValue={setSearchValue} /> */}
+      <h1 className="text-center text-white py-3">azrayaal movie review</h1>
 
       <main class="list-film py-3">
         <div class="container-fluid">

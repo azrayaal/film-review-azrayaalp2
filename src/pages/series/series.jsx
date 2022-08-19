@@ -35,8 +35,9 @@ export default function Series() {
       <div className="bgutama">
         <Container fluid>
           <Navbara />
+          <h1 className="text-center text-white py-3">azrayaal movie review</h1>
 
-          <Searchbox />
+          {/* <Searchbox /> */}
           <div className="bgutama pb-5">
             <div class="hot-news pb-3">
               <div class="container-fluid">

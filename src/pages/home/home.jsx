@@ -19,7 +19,7 @@ export default function Home() {
   // const [selectedGenres, setSelectedGenres] = useState([]);
   // const genreforURL = useGenre(selectedGenres);
 
-  const getMovieRequest = async () => {
+  const getMovieRequest = async (event) => {
     await axios
       .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
       .then((response) => {
@@ -42,7 +42,9 @@ export default function Home() {
         <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet" />
 
         <Navbara />
-        <Searchbox searchValue={searchValue} setSearchValue={setSearchValue} getMovieRequest={getMovieRequest} />
+
+        <h1 className="text-center text-white py-3">azrayaal movie review</h1>
+        {/* <Searchbox searchValue={searchValue} setSearchValue={setSearchValue} getMovieRequest={getMovieRequest} /> */}
 
         <div className=" pb-5 container-fluid">
           <div class="hot-news pb-3">
