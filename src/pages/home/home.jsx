@@ -23,7 +23,7 @@ export default function Home() {
     await axios
       .get(`https://api.themoviedb.org/3/trending/all/day?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
       .then((response) => {
-        console.log('data =>', response.data);
+        // console.log('data =>', response.data);
         setMovies(response.data.results);
         setNumOfPages(response.data.total_pages);
       })

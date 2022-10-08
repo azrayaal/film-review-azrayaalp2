@@ -13,8 +13,8 @@ function Filmdetails({ media_type, id }) {
 
   const fetchDetail = async () => {
     const { data } = await axios.get(`https://api.themoviedb.org/3/${media_type}/${id}?api_key=8861682de098ff4d4464beac670c09cd&language=en-US`).then((response) => {
-      console.log(response);
-      setContent(response);
+      // console.log(response);
+      // setContent(response);
     });
 
     // console.log(data);

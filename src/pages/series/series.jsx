@@ -17,7 +17,7 @@ export default function Series() {
     await axios
       .get(`https://api.themoviedb.org/3/discover/tv/?api_key=8861682de098ff4d4464beac670c09cd&page=${page}`)
       .then((response) => {
-        console.log('data =>', response.data.results);
+        // console.log('data =>', response.data.results);
         setMovies(response.data.results);
         setNumOfPages(response.data.total_pages);
       })

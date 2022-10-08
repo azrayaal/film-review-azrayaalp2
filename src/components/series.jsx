@@ -17,8 +17,8 @@ export default function Series() {
         },
       })
       .then((response) => {
-        console.log('data =>', response.data.results);
         setSeries(response.data.results);
+        // console.log('data =>', response.data.results);
       });
   }, []);
 
